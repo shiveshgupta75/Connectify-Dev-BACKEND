@@ -1,0 +1,27 @@
+{
+  "name": "connectify-dev-backend",
+  "version": "1.0.0",
+  "description": "\"Developer matchmaking and collaboration platform.\"",
+  "main": "index.js",
+  "scripts": {
+    "start": "node src/app.js",
+    "dev": "nodemon src/app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shiveshgupta75/Connectify-Dev-BACKEND.git"
+  },
+  "keywords": [
+    "nodejs",
+    "javascript"
+  ],
+  "author": "Shivesh Gupta",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/shiveshgupta75/Connectify-Dev-BACKEND/issues"
+  },
+  "homepage": "https://github.com/shiveshgupta75/Connectify-Dev-BACKEND#readme",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
