@@ -1,36 +1,33 @@
 const express=require('express');
+const connectDB=require("./config/database");
+const User=require("./models/user"); 
 const app=express();
-const {adminAuth,UserAuth}=require("./middlewares/auth.js");
 
-
-//  app.use("/admin",adminAuth);
-//  app.use
-//  app.post("/user/login",(req,res)=>{
-//   res.send("User logged in successfully");
-//  });
-//  app.get("/user",UserAuth,(req,res)=>{
-//     res.send("User Data Sent");
-//  });
-//  app.get("/admin/getAllData",(req,res)=>{
-//     res.send("All Data Sent");
-//  });
-
-app.use("/getUserData",(req,res)=>{
-     try{
-        throw new error("cjsbjb");
-        res.send("User Data Sent");
-     }
-     catch(err){
-         res.status(500).send("something went wrong");
-     }
-    
+app.post("/signup",async(req,res)=>{
+       const user=new User({
+        firstName:"MS",
+        lastName:"DHONI",
+        emailId:"msd23@gmail.com",
+        password:"msd123"
+       });
+ try{
+    await user.save();
+  res.send("User Added Successfully");
+ } catch(err){
+    res.status(500).send("Error in saving user");
+ }
 
 });
-app.use("/",(err,req,res,next)=>{
-    if(err){
-        res.status(500).send("something went wrong");    }
+connectDB()
+         .then(()=>{
+                console.log('Database connected successfully');
+                app.listen(3000,()=>{
+                console.log('Server is running on port 3000');
+                })  
+             })
+             .catch((err)=>{
+                console.log('Database connection failed');
+             });
 
-});
-app.listen(3000,()=>{
-    console.log('Server is running on port 3000');
-})  
+
+
