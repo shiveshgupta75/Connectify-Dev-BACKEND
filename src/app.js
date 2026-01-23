@@ -4,6 +4,9 @@ const {adminAuth,UserAuth}=require("./middlewares/auth.js");
 
 //Handle Auth Middleware for all GET,POST,PATCH,...request
  app.use("/admin",adminAuth);
+ app.post("/user/login",(req,res)=>{
+  res.send("User logged in successfully");
+ });
  app.get("/user",UserAuth,(req,res)=>{
     res.send("User Data Sent");
  });
