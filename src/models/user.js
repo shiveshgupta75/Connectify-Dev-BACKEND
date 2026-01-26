@@ -1,4 +1,5 @@
 const mongoose=require('mongoose');
+const validator=require("validator");
 const userschema=new mongoose.Schema({
     firstName:{
           type:String,
@@ -15,10 +16,20 @@ const userschema=new mongoose.Schema({
         required:true,
         unique:true,
         trim:true,
+        validate(value){
+            if(!validator.isEmail(value)){
+                throw new Error("Email is invalid :"+ value);
+            }
+        },
     },
     password:{
         type:String,
         required:true,
+        validate(value){
+            if(!validator.isStrongPassword(value)){
+                throw new Error("Password is not strong enough");
+            }
+        },
     },
     age:{
         type:Number,
@@ -35,6 +46,11 @@ const userschema=new mongoose.Schema({
     photoUrl:{
         type:String,
         default:"https://i1.rgstatic.net/ii/profile.image/745778318417921-1554818815059_Q512/Rod-Hart.jpg",
+        validate(value){
+            if(!validator.isURL(value)){
+                throw new Error("Photo URL is invalid");
+            }
+        },
     },
     about:{
         type:String,
